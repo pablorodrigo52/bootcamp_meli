@@ -2,6 +2,8 @@ package br.com.mercadolivre.produtoscrud;
 
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.mercadolivre.produtoscrud.model.Produto;
+import br.com.mercadolivre.produtoscrud.service.ProdutoCRUDControllerException;
 import br.com.mercadolivre.produtoscrud.service.ProdutoService;
 
 /**
@@ -23,11 +26,11 @@ public class ProdutoCRUDController {
     private ProdutoService service = new ProdutoService();
 
     @PostMapping("/create")
-    public String create(@RequestBody Produto product){
+    public ResponseEntity<String> create(@RequestBody Produto product){
         if (service.addToProductList(product)){
-            return product.toString();
+            return new ResponseEntity<String>(product.toString(), HttpStatus.OK);
         } else {
-            return "ERROR on CREATE";
+            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProduct("product not OK"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -47,36 +50,41 @@ public class ProdutoCRUDController {
     }
 
     @GetMapping("/index/{id}")
-    public String index(@PathVariable int id){
-        return service.getProductList().get(id).toString();
+    public ResponseEntity<String> index(@PathVariable int id){
+        Produto productAux = service.getProductList().get(id);
+        if (productAux != null){
+            return new ResponseEntity<String>(productAux.toString(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/update/{id}")
-    public String update(@RequestBody Produto product, @PathVariable int id){
+    public ResponseEntity<String> update(@RequestBody Produto product, @PathVariable int id){
         if (service.isValidProduct(product)){
             Produto productAux = service.getProductList().get(id);
             if (productAux != null)
             {
                 service.getProductList().remove(id);
                 service.addToProductList(product, id);
-                return product.toString();
+                return new ResponseEntity<String>(product.toString(), HttpStatus.OK);
             } else {
-                return "ID does not exist";
+                return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
             }
         }else{
-            return "Product attributes is not valid";
+            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProduct("product not OK"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
     @DeleteMapping("delete/{id}")
-    public String delete (@PathVariable int id){
+    public ResponseEntity<String> delete (@PathVariable int id){
         Produto productAux = service.getProductList().get(id);
         if (productAux != null)
         {
             service.getProductList().remove(id);
-            return productAux.toString();
+            return new ResponseEntity<String>(productAux.toString(), HttpStatus.OK);
         } else {
-            return "ID does not exist";
+            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
         }
     }
 
