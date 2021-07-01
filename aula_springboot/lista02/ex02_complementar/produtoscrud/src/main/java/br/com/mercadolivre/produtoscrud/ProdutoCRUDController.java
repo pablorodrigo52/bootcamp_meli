@@ -34,7 +34,7 @@ public class ProdutoCRUDController {
         }
     }
 
-    @GetMapping("/index")
+    @GetMapping(value="/index", produces="application/json")
     public String index(){
         int counter = 0;
         StringBuilder index = new StringBuilder("[");
