@@ -28,9 +28,9 @@ public class ProdutoCRUDController {
     @PostMapping(value="/create", produces="application/json")
     public ResponseEntity<String> create(@RequestBody Produto product){
         if (service.addToProductList(product)){
-            return new ResponseEntity<String>(product.toString(), HttpStatus.OK);
+            return new ResponseEntity<>(product.toString(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProduct("product not OK"), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(ProdutoCRUDControllerException.errorProduct("product not OK"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -53,9 +53,9 @@ public class ProdutoCRUDController {
     public ResponseEntity<String> index(@PathVariable int id){
         Produto productAux = service.getProductList().get(id);
         if (productAux != null){
-            return new ResponseEntity<String>(productAux.toString(), HttpStatus.OK);
+            return new ResponseEntity<>(productAux.toString(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -67,12 +67,12 @@ public class ProdutoCRUDController {
             {
                 service.getProductList().remove(id);
                 service.addToProductList(product, id);
-                return new ResponseEntity<String>(product.toString(), HttpStatus.OK);
+                return new ResponseEntity<>(product.toString(), HttpStatus.OK);
             } else {
-                return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
             }
         }else{
-            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProduct("product not OK"), HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>(ProdutoCRUDControllerException.errorProduct("product not OK"), HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -82,9 +82,9 @@ public class ProdutoCRUDController {
         if (productAux != null)
         {
             service.getProductList().remove(id);
-            return new ResponseEntity<String>(productAux.toString(), HttpStatus.OK);
+            return new ResponseEntity<>(productAux.toString(), HttpStatus.OK);
         } else {
-            return new ResponseEntity<String>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(ProdutoCRUDControllerException.errorProductNotExists("product not EXISTS"), HttpStatus.NOT_FOUND);
         }
     }
 
