@@ -54,10 +54,10 @@ public class Produto {
     @Override
     public String toString() {
         return "{" +
-            " 'id':'" + getId() + "'" +
-            ", 'ammount':'" + getAmmount() + "'" +
-            ", 'name':'" + getName() + "'" +
-            ", 'value':'" + getValue() + "'" +
+            " \"id\":\"" + getId() + "\"" +
+            ", \"ammount\":\"" + getAmmount() + "\"" +
+            ", \"name\":\"" + getName() + "\"" +
+            ", \"value\":\"" + getValue() + "\"" +
             "}";
     }
 }

@@ -25,7 +25,7 @@ public class ProdutoCRUDController {
 
     private ProdutoService service = new ProdutoService();
 
-    @PostMapping("/create")
+    @PostMapping(value="/create", produces="application/json")
     public ResponseEntity<String> create(@RequestBody Produto product){
         if (service.addToProductList(product)){
             return new ResponseEntity<String>(product.toString(), HttpStatus.OK);
