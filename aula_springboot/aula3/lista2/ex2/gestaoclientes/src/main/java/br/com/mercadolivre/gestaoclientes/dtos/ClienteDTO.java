@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.mercadolivre.gestaoclientes.entities.Cliente;
+import br.com.mercadolivre.gestaoclientes.entities.Pedido;
 
 public class ClienteDTO {
 
@@ -20,6 +21,14 @@ public class ClienteDTO {
         this.cpf = cliente.getCpf();
         this.email = cliente.getEmail();
         this.telefone = cliente.getTelefone();
+
+        List<PedidoDTO> pedidoDTOList = new ArrayList<>();
+        PedidoDTO aux = new PedidoDTO();
+
+        for (Pedido prod : cliente.getPedidos()) {
+            pedidoDTOList.add(aux.converte(prod));            
+        }
+        this.pedidos = pedidoDTOList;
     }
 
     public String getId() {
