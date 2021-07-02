@@ -9,21 +9,20 @@ import br.com.mercadolivre.starwars.entities.Character;
  */
 public class CharacterDTO {
 
-    private String name, hairColor, skinColor, eyeColoe, birthYear, gender, homeworld, species;
+    private String name, hair_color, skin_color, eye_color, birth_year, gender, homeworld, species;
     private int height;
     private int mass;
-
 
 
     public CharacterDTO() {
     }
 
-    public CharacterDTO(String name, String hairColor, String skinColor, String eyeColoe, String birthYear, String gender, String homeworld, String species, int height, int mass) {
+    public CharacterDTO(String name, String hair_color, String skin_color, String eye_color, String birth_year, String gender, String homeworld, String species, int height, int mass) {
         this.name = name;
-        this.hairColor = hairColor;
-        this.skinColor = skinColor;
-        this.eyeColoe = eyeColoe;
-        this.birthYear = birthYear;
+        this.hair_color = hair_color;
+        this.skin_color = skin_color;
+        this.eye_color = eye_color;
+        this.birth_year = birth_year;
         this.gender = gender;
         this.homeworld = homeworld;
         this.species = species;
@@ -34,10 +33,10 @@ public class CharacterDTO {
     public static CharacterDTO convert (Character character){
         return new CharacterDTO(
             character.getName(), 
-            character.getHairColor(), 
-            character.getSkinColor(), 
-            character.getEyeColoe(), 
-            character.getBirthYear(), 
+            character.getHair_color(), 
+            character.getSkin_color(), 
+            character.getEye_color(), 
+            character.getBirth_year(), 
             character.getGender(), 
             character.getHomeworld(), 
             character.getSpecies(), 
@@ -54,36 +53,36 @@ public class CharacterDTO {
         this.name = name;
     }
 
-    public String getHairColor() {
-        return this.hairColor;
+    public String getHair_color() {
+        return this.hair_color;
     }
 
-    public void setHairColor(String hairColor) {
-        this.hairColor = hairColor;
+    public void setHair_color(String hair_color) {
+        this.hair_color = hair_color;
     }
 
-    public String getSkinColor() {
-        return this.skinColor;
+    public String getSkin_color() {
+        return this.skin_color;
     }
 
-    public void setSkinColor(String skinColor) {
-        this.skinColor = skinColor;
+    public void setSkin_color(String skin_color) {
+        this.skin_color = skin_color;
     }
 
-    public String getEyeColoe() {
-        return this.eyeColoe;
+    public String getEye_color() {
+        return this.eye_color;
     }
 
-    public void setEyeColoe(String eyeColoe) {
-        this.eyeColoe = eyeColoe;
+    public void setEye_color(String eye_color) {
+        this.eye_color = eye_color;
     }
 
-    public String getBirthYear() {
-        return this.birthYear;
+    public String getBirth_year() {
+        return this.birth_year;
     }
 
-    public void setBirthYear(String birthYear) {
-        this.birthYear = birthYear;
+    public void setBirth_year(String birth_year) {
+        this.birth_year = birth_year;
     }
 
     public String getGender() {
@@ -125,5 +124,4 @@ public class CharacterDTO {
     public void setMass(int mass) {
         this.mass = mass;
     }
-
 }

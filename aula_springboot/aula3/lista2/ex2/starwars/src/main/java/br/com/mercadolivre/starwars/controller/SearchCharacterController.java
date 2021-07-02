@@ -1,5 +1,7 @@
 package br.com.mercadolivre.starwars.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,7 @@ public class SearchCharacterController {
     SearchService searchService;
 
     @GetMapping
-    public CharacterDTO search (@RequestParam String query){
+    public List<CharacterDTO> search (@RequestParam String query){
         return searchService.search(query);
     }
     

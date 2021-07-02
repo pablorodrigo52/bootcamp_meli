@@ -1,10 +1,14 @@
 package br.com.mercadolivre.starwars.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.mercadolivre.starwars.repository.SearchRepository;
 import br.com.mercadolivre.starwars.dto.CharacterDTO;
+import br.com.mercadolivre.starwars.entities.Character;
 
 @Service
 public class SearchService {
@@ -16,11 +20,14 @@ public class SearchService {
         this.repository = repository;
     }
 
-    public CharacterDTO search(String query){
+    public List<CharacterDTO> search(String query){
+        List<CharacterDTO> personsDTO = new ArrayList<>();            
         if (query!=null && !query.equals("")){
-            return CharacterDTO.convert(this.repository.search(query));
-        } else {
-            return new CharacterDTO();
+            List<Character> persons = this.repository.search(query);
+            for(Character person:persons){
+                personsDTO.add(CharacterDTO.convert(person));
+            }
         }
+        return personsDTO;
     }
 }
