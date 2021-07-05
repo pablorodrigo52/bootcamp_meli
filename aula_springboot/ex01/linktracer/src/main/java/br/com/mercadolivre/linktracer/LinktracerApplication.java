@@ -1,0 +1,13 @@
+package br.com.mercadolivre.linktracer;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LinktracerApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LinktracerApplication.class, args);
+	}
+
+}
