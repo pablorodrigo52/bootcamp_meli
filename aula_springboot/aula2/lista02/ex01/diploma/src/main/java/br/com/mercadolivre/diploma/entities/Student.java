@@ -5,15 +5,15 @@ import java.util.List;
 /**
  * Aluno
  */
-public class Aluno {
+public class Student {
 
     private String name;
-    private List<Disciplina> course;
+    private List<Subject> course;
     
-    public Aluno() {
+    public Student() {
     }
 
-    public Aluno(String name, List<Disciplina> course) {
+    public Student(String name, List<Subject> course) {
         this.name = name;
         this.course = course;
     }
@@ -26,11 +26,11 @@ public class Aluno {
         this.name = name;
     }
 
-    public List<Disciplina> getCourse() {
+    public List<Subject> getCourse() {
         return this.course;
     }
 
-    public void setCourse(List<Disciplina> course) {
+    public void setCourse(List<Subject> course) {
         this.course = course;
     }
 
