@@ -16,7 +16,7 @@ public class DiplomaService {
     protected static final String MSG_APROVADO_PLUS = "$NAME você foi aprovado com média $MEDIA. PARABÉNS!!!";
     protected static final String MSG_REPROVADO = "$NAME você foi reprovado com média $MEDIA.";
 
-    protected DiplomaService(){}
+    public DiplomaService(){}
 
     public static double getMedia(Student student){
         double sum = student.getCourse().stream().mapToDouble(d -> d.getNote()).sum();        
