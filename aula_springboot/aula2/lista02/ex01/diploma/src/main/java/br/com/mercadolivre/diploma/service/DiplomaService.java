@@ -18,7 +18,7 @@ public class DiplomaService {
 
     protected DiplomaService(){}
 
-    protected static double getMedia(Student student){
+    public static double getMedia(Student student){
         double sum = student.getCourse().stream().mapToDouble(d -> d.getNote()).sum();        
         return sum / student.getCourse().size();
     }
