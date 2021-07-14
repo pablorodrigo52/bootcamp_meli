@@ -21,14 +21,8 @@ import br.com.mercadolivre.diploma.service.DiplomaService;
 class CertificateServiceImplTest {
 
 	@Test
-	void shouldBeAnalyzeNotes() {
-		List<Subject> subjects = new ArrayList<>();		
-		subjects.add(new Subject("Disciplina 1", 10));
-		subjects.add(new Subject("Disciplina 2", 5));
-		subjects.add(new Subject("Disciplina 3", 8));
-		subjects.add(new Subject("Disciplina 4", 9));
-
-		StudentDTO studentDTO = new StudentDTO("Pablo Rodrigo", subjects);
+	public void shouldBeAnalyzeNotes() {
+		StudentDTO studentDTO = createStudentDTO();
 		SubjectDTO subjectDto = DiplomaService.generateDiploma(studentDTO);
 
 		assertNotNull(studentDTO);
@@ -38,25 +32,17 @@ class CertificateServiceImplTest {
 	}
 
 	@Test
-	void shouldBeCalculateAverage() {
-		List<Subject> subjects = new ArrayList<>();		
-		subjects.add(new Subject("Disciplina 1", 10));
-		subjects.add(new Subject("Disciplina 2", 5));
-		
-		StudentDTO studentDTO = new StudentDTO("Pablo Rodrigo", subjects);
+	public void shouldBeCalculateAverage() {
+		StudentDTO studentDTO = createStudentDTO();
 		
 		double average = DiplomaService.getMedia(StudentDTO.convert(studentDTO));		
-		double expected = 7.5;
+		double expected = 10.0;
 		assertEquals(expected, average);
 	}
 
 	@Test
-	void shouldBeWriteDiploma(){
-		List<Subject> subjects = new ArrayList<>();		
-		subjects.add(new Subject("Disciplina 1", 10));
-		subjects.add(new Subject("Disciplina 2", 5));
-		
-		StudentDTO studentDTO = new StudentDTO("Pablo Rodrigo", subjects);
+	public void shouldBeWriteDiploma(){
+		StudentDTO studentDTO = createMiddleStudentDTO();
 
 		SimpleSubjectDTO simpleSubjectDTO = DiplomaService.generateDiploma(StudentDTO.convert(studentDTO));
 		String expected = "Pablo Rodrigo você foi aprovado com média 7.5.";
@@ -65,16 +51,29 @@ class CertificateServiceImplTest {
 	}
 
 	@Test
-	void shouldBeWriteDiplomaWithHonors(){
-		List<Subject> subjects = new ArrayList<>();		
-		subjects.add(new Subject("Disciplina 1", 10));
-		subjects.add(new Subject("Disciplina 2", 10));
-		
-		StudentDTO studentDTO = new StudentDTO("Pablo Rodrigo", subjects);
+	public void shouldBeWriteDiplomaWithHonors(){
+		StudentDTO studentDTO = createStudentDTO();
 
 		SimpleSubjectDTO simpleSubjectDTO = DiplomaService.generateDiploma(StudentDTO.convert(studentDTO));
 		String expected = "Pablo Rodrigo você foi aprovado com média 10.0. PARABÉNS!!!";
 
 		assertEquals(expected, simpleSubjectDTO.getMessage());
+	}
+
+
+	private StudentDTO createStudentDTO(){
+		List<Subject> subjects = new ArrayList<>();		
+		subjects.add(new Subject("Disciplina 1", 10));
+		subjects.add(new Subject("Disciplina 2", 10));
+		
+		return new StudentDTO("Pablo Rodrigo", subjects);
+	}
+
+	private StudentDTO createMiddleStudentDTO(){
+		List<Subject> subjects = new ArrayList<>();		
+		subjects.add(new Subject("Disciplina 1", 10));
+		subjects.add(new Subject("Disciplina 2", 5));
+		
+		return new StudentDTO("Pablo Rodrigo", subjects);
 	}
 }
