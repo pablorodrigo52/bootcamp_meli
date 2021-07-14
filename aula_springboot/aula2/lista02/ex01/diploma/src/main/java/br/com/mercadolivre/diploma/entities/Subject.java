@@ -11,7 +11,7 @@ public class Subject {
 
     @NotBlank
     @Size(min = 5, max = 50)
-    @Pattern(regexp = "^[A-Za-z_áíó]*$")
+    @Pattern(regexp = "^[A-Za-z ]*$")
     private String subject;
 
     @NotNull

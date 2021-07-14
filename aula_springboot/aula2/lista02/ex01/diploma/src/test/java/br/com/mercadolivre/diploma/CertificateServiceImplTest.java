@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import br.com.mercadolivre.diploma.dto.SimpleSubjectDTO;
 import br.com.mercadolivre.diploma.dto.StudentDTO;
 import br.com.mercadolivre.diploma.dto.SubjectDTO;
 import br.com.mercadolivre.diploma.entities.Subject;
@@ -57,12 +58,11 @@ class CertificateServiceImplTest {
 		
 		StudentDTO studentDTO = new StudentDTO("Pablo Rodrigo", subjects);
 
-		String diplomaString = DiplomaService.generateDiploma(StudentDTO.convert(studentDTO));
+		SimpleSubjectDTO simpleSubjectDTO = DiplomaService.generateDiploma(StudentDTO.convert(studentDTO));
 		String expected = "Pablo Rodrigo você foi aprovado com média 7.5.";
 
-		assertEquals(expected, diplomaString);
+		assertEquals(expected, simpleSubjectDTO.getMessage());
 	}
-
 
 	@Test
 	void shouldBeWriteDiplomaWithHonors(){
@@ -72,9 +72,9 @@ class CertificateServiceImplTest {
 		
 		StudentDTO studentDTO = new StudentDTO("Pablo Rodrigo", subjects);
 
-		String diplomaString = DiplomaService.generateDiploma(StudentDTO.convert(studentDTO));
+		SimpleSubjectDTO simpleSubjectDTO = DiplomaService.generateDiploma(StudentDTO.convert(studentDTO));
 		String expected = "Pablo Rodrigo você foi aprovado com média 10.0. PARABÉNS!!!";
 
-		assertEquals(expected, diplomaString);
+		assertEquals(expected, simpleSubjectDTO.getMessage());
 	}
 }

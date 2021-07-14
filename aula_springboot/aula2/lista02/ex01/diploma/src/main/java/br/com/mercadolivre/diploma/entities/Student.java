@@ -8,14 +8,14 @@ import java.util.List;
 public class Student {
 
     private String name;
-    private List<Subject> course;
+    private List<Subject> subjects;
     
     public Student() {
     }
 
-    public Student(String name, List<Subject> course) {
+    public Student(String name, List<Subject> subjects) {
         this.name = name;
-        this.course = course;
+        this.subjects = subjects;
     }
 
     public String getName() {
@@ -26,12 +26,12 @@ public class Student {
         this.name = name;
     }
 
-    public List<Subject> getCourse() {
-        return this.course;
+    public List<Subject> getSubjects() {
+        return this.subjects;
     }
 
-    public void setCourse(List<Subject> course) {
-        this.course = course;
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
     }
 
 }

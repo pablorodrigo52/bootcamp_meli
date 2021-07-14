@@ -3,6 +3,7 @@ package br.com.mercadolivre.diploma.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.mercadolivre.diploma.dto.SimpleSubjectDTO;
 import br.com.mercadolivre.diploma.dto.StudentDTO;
 import br.com.mercadolivre.diploma.dto.SubjectDTO;
 import br.com.mercadolivre.diploma.entities.Student;
@@ -19,13 +20,13 @@ public class DiplomaService {
     public DiplomaService(){}
 
     public static double getMedia(Student student){
-        double sum = student.getCourse().stream().mapToDouble(d -> d.getNote()).sum();        
-        return sum / student.getCourse().size();
+        double sum = student.getSubjects().stream().mapToDouble(d -> d.getNote()).sum();        
+        return sum / student.getSubjects().size();
     }
 
-    public static String generateDiploma(Student student){
+    public static SimpleSubjectDTO generateDiploma(Student student){
         double average = DiplomaService.getMedia(student);
-        return createMessage(average, student.getName());
+        return new SimpleSubjectDTO(average, createMessage(average, student.getName()));
     }
 
     public static SubjectDTO generateDiploma(StudentDTO dto){
@@ -36,7 +37,6 @@ public class DiplomaService {
 
         return new SubjectDTO(average, message, studentList);
     }
-
 
     private static String createMessage(double average, String studentName){
         if (average >= 9){
